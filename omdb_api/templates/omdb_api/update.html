@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HOME</title>
+    <title>Update Movie</title>
 </head>
 <body>
-    <h1>Search for a Movie</h1>
+    <h1>Update Movie</h1>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Search</button>
+        <button type="submit">Update</button>
     </form>
+    <button><a href="{% url 'omdb_api:list' %}"> < Back </a></button>
 </body>
 </html>

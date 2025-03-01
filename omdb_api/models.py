@@ -14,8 +14,7 @@ class movieModel(models.Model):
     def __str__(self):
         return self.title
 
-class userModel(models.Model):
-    username = models.CharField(max_length=20)
-    password = models.CharField(max_length=20)
+class Diretores(models.Model):
+    nome = models.CharField(max_length=100)
     def __str__(self):
-        return self.username    
+        return self.nome

@@ -1,5 +1,4 @@
 from django.shortcuts import redirect, render
-from django.contrib.auth import authenticate, login
 from django.views.generic import FormView, ListView, DetailView, DeleteView, UpdateView
 from django.urls import reverse_lazy
 from django.http import HttpResponse, HttpResponseRedirect
@@ -52,10 +51,12 @@ class movieDeleteView(DeleteView):
     template_name = 'omdb_api/delete.html'
     success_url = reverse_lazy('omdb_api:list')
     
+class movieUpdateView(UpdateView):
+    model = movieModel
+    template_name = 'omdb_api/update.html'
+    success_url = reverse_lazy('omdb_api:list')
+    fields = ['title', 'year', 'type', 'genre', 'director', 'writer', 'actors', 'awards', 'rating']
+    
 def error(request):
     return render(request, 'omdb_api/error.html')
 
-class DiretoresListView(ListView):
-    model = Diretores
-    template_name = 'omdb_api/diretores.html'
-    context_object_name = 'diretores'
