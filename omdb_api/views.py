@@ -3,12 +3,11 @@ from django.views.generic import FormView, ListView, DetailView, DeleteView, Upd
 from django.urls import reverse_lazy
 from django.http import HttpResponse, HttpResponseRedirect
 
-from .models import movieModel, Diretores
-from .forms import movieForm
+from .models import movieModel, Review
+from .forms import movieForm, ReviewForm
 
 import requests
 
-# Create your views here.
 class movieView(FormView):
     template_name = 'omdb_api/search.html'
     form_class = movieForm
@@ -46,6 +45,21 @@ class movieDetail(DetailView):
     template_name = 'omdb_api/detail.html'
     context_object_name = 'movie'
     
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['review_form'] = ReviewForm()
+        return context
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            review = form.save(commit=False)
+            review.movie = self.object
+            review.save()
+            return redirect('omdb_api:detail', pk=self.object.pk)
+        return self.render_to_response(self.get_context_data(form=form))
+
 class movieDeleteView(DeleteView):
     model = movieModel
     template_name = 'omdb_api/delete.html'
@@ -59,4 +73,3 @@ class movieUpdateView(UpdateView):
     
 def error(request):
     return render(request, 'omdb_api/error.html')
-

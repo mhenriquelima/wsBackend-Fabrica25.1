@@ -18,6 +18,18 @@
         <li>Awards: {{ movie.awards }}</li>
         <li>Rating: {{ movie.rating }}</li>
     </ul>
+    <h2>Reviews</h2>
+    <ul>
+        {% for review in movie.reviews.all %}
+            <li>{{ review.review_text }} - Rating: {{ review.rating }}</li>
+        {% endfor %}
+    </ul>
+    <h2>Add a Review</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ review_form.as_p }}
+        <button type="submit">Submit Review</button>
+    </form>
     <button><a href="{% url 'omdb_api:list' %}"> < Back </a></button>
     <button><a href="{% url 'omdb_api:search' %}">Search more</a></button>
     <button><a href="{% url 'omdb_api:update' movie.pk %}">Update</a></button>

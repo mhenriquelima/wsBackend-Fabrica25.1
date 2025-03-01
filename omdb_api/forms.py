@@ -1,9 +1,11 @@
 from django import forms
+from .models import Review
 
 class movieForm(forms.Form):
     title = forms.CharField(label='Search', max_length=100)
 
-class loginForm(forms.Form):
-    username = forms.CharField(label='Username', max_length=100)
-    password = forms.CharField(label='Password', max_length=100, widget=forms.PasswordInput)
+class ReviewForm(forms.ModelForm):
+    class Meta:
+        model = Review
+        fields = ['review_text', 'rating']
     
