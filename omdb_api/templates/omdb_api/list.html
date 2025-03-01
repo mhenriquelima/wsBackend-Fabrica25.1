@@ -6,7 +6,7 @@
     <title>Movie History</title>
 </head>
 <body>
-    <h1>Movie History</h1>
+    <h1>Movie Glossary</h1>
     <ul>
         {% for movie in movies %}
             <li><a href="{% url 'omdb_api:detail' movie.pk %}">{{ movie.title }}</a> ({{ movie.year }})</li>

@@ -53,9 +53,30 @@ class movieDeleteView(DeleteView):
     
 class movieUpdateView(UpdateView):
     model = movieModel
-    fields = ['title', 'year', 'type', 'genre', 'director', 'writer', 'actors', 'awards', 'rating']
+    fields = ['title']
     template_name = 'omdb_api/update.html'
     success_url = reverse_lazy('omdb_api:list')
+    failure_url = reverse_lazy('omdb_api:error')
+    def form_valid(self, form):
+        title = form.cleaned_data['title']
+        url = f'http://www.omdbapi.com/?t={title}&apikey=4a3b711b'
+        response = requests.get(url)
+        if response.status_code == 200:
+            movie = response.json()
+            if movie.get('Response') == 'True':
+                movieModel.objects.create(
+                    title=movie.get('Title', 'N/A'),
+                    year=movie.get('Year', 'N/A'),
+                    type=movie.get('Type', 'N/A'),
+                    genre=movie.get('Genre', 'N/A'),
+                    director=movie.get('Director', 'N/A'),
+                    writer=movie.get('Writer', 'N/A'),
+                    actors=movie.get('Actors', 'N/A'),
+                    awards=movie.get('Awards', 'N/A'),
+                    rating=movie['Ratings'][0]['Value'] if movie.get('Ratings') else 'N/A'
+                )
+                return super().form_valid(form)
+        return HttpResponseRedirect(self.failure_url)
     
 def error(request):
     return render(request, 'omdb_api/error.html')
