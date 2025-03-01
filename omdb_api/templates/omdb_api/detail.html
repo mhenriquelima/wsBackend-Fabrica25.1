@@ -21,7 +21,12 @@
     <h2>Reviews</h2>
     <ul>
         {% for review in movie.reviews.all %}
-            <li>{{ review.review_text }} - Rating: {{ review.rating }}</li>
+            <li>{{ review.review_text }} - Rating: {{ review.rating }}
+                <form action="{% url 'omdb_api:reviewDelete' review.pk %}" method="post" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit">Delete</button>
+                </form>
+            </li>
         {% endfor %}
     </ul>
     <h2>Add a Review</h2>

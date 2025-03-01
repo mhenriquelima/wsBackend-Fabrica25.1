@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import movieView, movieListView, movieDetail, movieDeleteView, movieUpdateView, error
+from .views import movieView, movieListView, movieDetail, movieDeleteView, movieUpdateView, reviewDeleteView, error
 
 app_name = 'omdb_api'
 
@@ -10,4 +10,5 @@ urlpatterns = [
     path('delete/<int:pk>/', movieDeleteView.as_view(), name='delete'),
     path('error/', error, name='error'),
     path('update/<int:pk>/', movieUpdateView.as_view(), name='update'),
+    path('reviewDelete/<int:pk>/', reviewDeleteView.as_view(), name='reviewDelete'),
 ]

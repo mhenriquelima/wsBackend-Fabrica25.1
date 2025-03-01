@@ -73,3 +73,10 @@ class movieUpdateView(UpdateView):
     
 def error(request):
     return render(request, 'omdb_api/error.html')
+
+class reviewDeleteView(DeleteView):
+    model = reviewModel
+    template_name = 'omdb_api/review_delete.html'
+    
+    def get_success_url(self):
+        return reverse_lazy('omdb_api:detail', kwargs={'pk': self.object.movie.pk})
