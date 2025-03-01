@@ -11,7 +11,7 @@ import requests
 class movieView(FormView):
     template_name = 'omdb_api/search.html'
     form_class = movieForm
-    success_url = reverse_lazy('omdb_api/detail/<int:pk>/')
+    success_url = reverse_lazy('omdb_api:list')
 
     def form_valid(self, form):
         title = form.cleaned_data['title']
