@@ -24,7 +24,7 @@
     docker run -p 8000:8000 wsbackend-fabrica25.1
 
 
-4. Acesse a aplicação em `http://localhost:8000`.
+6. Acesse a aplicação em `http://localhost:8000`.
 
 ## Uso
 
