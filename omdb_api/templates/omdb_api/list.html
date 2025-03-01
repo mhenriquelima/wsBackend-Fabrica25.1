@@ -1,22 +1,79 @@
+<!-- filepath: /c:/Users/SAGGA/Documents/GitHub/wsBackend-Fabrica25.1/omdb_api/templates/omdb_api/list.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Movie Glossary</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: auto;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        p {
+            color: #666;
+            text-align: center;
+        }
+        a {
+            color: #5bc0de;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        button {
+            background-color: #5bc0de;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+            margin: 20px auto;
+        }
+        button a {
+            color: #fff;
+            text-decoration: none;
+        }
+        button:hover {
+            background-color: #31b0d5;
+        }
+    </style>
 </head>
 <body>
-    <h1>Movie Glossary</h1>
-    <ul>
-        {% if movies %}
-        {% else %}
-            <p>You have not searched for any movies yet.</p>
-        {% endif %}
-        {% for movie in movies %}
-            <li><a href="{% url 'omdb_api:detail' movie.pk %}">{{ movie.title }}</a> ({{ movie.year }})</li>
-        {% endfor %}
-
-    </ul>
-    <button><a href="{% url 'omdb_api:search' %}">Search</a></button>
+    <div class="container">
+        <h1>Movie Glossary</h1>
+        <ul>
+            {% if movies %}
+                {% for movie in movies %}
+                    <li><a href="{% url 'omdb_api:detail' movie.pk %}">{{ movie.title }}</a> ({{ movie.year }})</li>
+                {% endfor %}
+            {% else %}
+                <p>You have not searched for any movies yet.</p>
+            {% endif %}
+        </ul>
+        <button><a href="{% url 'omdb_api:search' %}">Search</a></button>
+    </div>
 </body>
 </html>

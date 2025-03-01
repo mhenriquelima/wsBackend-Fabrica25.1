@@ -4,8 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Error</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h1 {
+            color: #d9534f;
+        }
+        button {
+            background-color: #5bc0de;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        button a {
+            color: #fff;
+            text-decoration: none;
+        }
+        button:hover {
+            background-color: #31b0d5;
+        }
+    </style>
 </head>
 <body>
-    <h1>Error: Something went wrong</h1><button><a href="{% url 'omdb_api:search' %}">Search Again</a></button>
+    <div class="container">
+        <h1>Error: Something went wrong</h1>
+        <button><a href="{% url 'omdb_api:search' %}">Search Again</a></button>
+    </div>
 </body>
 </html>

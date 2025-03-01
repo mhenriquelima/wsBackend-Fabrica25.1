@@ -4,6 +4,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Delete Movies</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            color: #666;
+        }
+        button {
+            background-color: #d9534f;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button a {
+            color: #fff;
+            text-decoration: none;
+        }
+        button:hover {
+            background-color: #c9302c;
+        }
+        .cancel-button {
+            background-color: #5bc0de;
+        }
+        .cancel-button:hover {
+            background-color: #31b0d5;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -13,7 +60,7 @@
             {% csrf_token %}
             <button type="submit">Confirm Delete</button>
         </form>
-        <button><a href="{% url 'omdb_api:list' %}">Cancel</a></button>
+        <button class="cancel-button"><a href="{% url 'omdb_api:list' %}">Cancel</a></button>
     </div>
 </body>
 </html>
