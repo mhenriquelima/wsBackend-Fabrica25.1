@@ -27,8 +27,11 @@
     <h2>Add a Review</h2>
     <form method="post">
         {% csrf_token %}
-        {{ review_form.as_p }}
-        <button type="submit">Submit Review</button>
+        <label for="review_text">Review:</label>
+        <input type="text" name="review_text" id="review_text">
+        <label for="rating">Rating:</label>
+        <input type="number" name="rating" id="rating" min="1" max="10">
+        <button type="submit">Submit Review </button>
     </form>
     <button><a href="{% url 'omdb_api:list' %}"> < Back </a></button>
     <button><a href="{% url 'omdb_api:search' %}">Search more</a></button>

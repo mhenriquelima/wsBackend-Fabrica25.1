@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import MaxValueValidator
 
 # Create your models here.
 class movieModel(models.Model):
@@ -17,6 +18,6 @@ class movieModel(models.Model):
 class Review(models.Model):
     movie = models.ForeignKey(movieModel, on_delete=models.CASCADE, related_name='reviews')
     review_text = models.TextField()
-    rating = models.IntegerField()
+    rating = models.IntegerField(validators=[MaxValueValidator(10)])
     def __str__(self):
         return f'Review for {self.movie.title}'
