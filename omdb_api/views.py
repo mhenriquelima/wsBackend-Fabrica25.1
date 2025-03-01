@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import FormView, ListView, DetailView
+from django.views.generic import FormView, ListView, DetailView, DeleteView
 from django.urls import reverse_lazy
 
 from .models import movieModel
@@ -43,3 +43,8 @@ class movieDetail(DetailView):
     model = movieModel
     template_name = 'omdb_api/detail.html'
     context_object_name = 'movie'
+    
+class movieDeleteView(DeleteView):
+    model = movieModel
+    template_name = 'omdb_api/delete.html'
+    success_url = reverse_lazy('omdb_api:list')

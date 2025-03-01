@@ -11,6 +11,7 @@
         {% for movie in movies %}
             <li><a href="{% url 'omdb_api:detail' movie.pk %}">{{ movie.title }}</a> ({{ movie.year }})</li>
         {% endfor %}
+
     </ul>
     <button><a href="{% url 'omdb_api:search' %}">Search</a></button>
 </body>
