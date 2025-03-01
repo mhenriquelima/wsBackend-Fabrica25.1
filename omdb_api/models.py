@@ -15,7 +15,7 @@ class movieModel(models.Model):
     def __str__(self):
         return self.title
 
-class Review(models.Model):
+class reviewModel(models.Model):
     movie = models.ForeignKey(movieModel, on_delete=models.CASCADE, related_name='reviews')
     review_text = models.TextField()
     rating = models.IntegerField(validators=[MaxValueValidator(10)])

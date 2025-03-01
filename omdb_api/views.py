@@ -3,8 +3,8 @@ from django.views.generic import FormView, ListView, DetailView, DeleteView, Upd
 from django.urls import reverse_lazy
 from django.http import HttpResponse, HttpResponseRedirect
 
-from .models import movieModel, Review
-from .forms import movieForm, ReviewForm
+from .models import movieModel, reviewModel
+from .forms import movieForm, reviewForm
 
 import requests
 
@@ -47,12 +47,12 @@ class movieDetail(DetailView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['review_form'] = ReviewForm()
+        context['review_form'] = reviewForm()
         return context
 
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
-        form = ReviewForm(request.POST)
+        form = reviewForm(request.POST)
         if form.is_valid():
             review = form.save(commit=False)
             review.movie = self.object
