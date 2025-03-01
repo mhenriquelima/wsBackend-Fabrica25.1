@@ -43,7 +43,8 @@
 ## Detalhes do Projeto
 
 ### Modelos
-- [models.py]: Representa um filme com campos para título, ano, tipo, gênero, diretor, escritor, atores, prêmios e avaliação.
+- [models.py][movieModel]: Representa um filme com campos para título, ano, tipo, gênero, diretor, escritor, atores, prêmios e avaliação.
+- [models.py][Reviews]
 
 ### Views
 - [views.py][movieView]: Lida com o formulário de pesquisa de filmes e salva os detalhes do filme no banco de dados.
