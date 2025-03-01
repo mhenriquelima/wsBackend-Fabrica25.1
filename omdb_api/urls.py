@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import movieView, movieListView, movieDetail, movieDeleteView, movieUpdateView, error
+from .views import movieView, movieListView, movieDetail, movieDeleteView, movieUpdateView, sign_in, error
 
 app_name = 'omdb_api'
 

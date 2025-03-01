@@ -6,7 +6,7 @@
     <title>HOME</title>
 </head>
 <body>
-    <h1>Search for a Movie</h1>
+    <h1>Search for a Movie, {{ user.username }}</h1>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}

@@ -28,6 +28,11 @@
 
 ## Uso
 
+### Fazer Login
+1. Navegue até a página de pesquisa em `http://localhost:8000/api/user/`.
+2. Insira o Nome de Usuário e senha.
+3. O app irá chamar pelo Nome de Usuário
+
 ### Pesquisar um Filme
 1. Navegue até a página de pesquisa em `http://localhost:8000/api/search/`.
 2. Insira o título do filme e clique em "Search".

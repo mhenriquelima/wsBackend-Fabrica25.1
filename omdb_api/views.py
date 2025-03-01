@@ -1,9 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
+from django.contrib.auth import authenticate, login
 from django.views.generic import FormView, ListView, DetailView, DeleteView, UpdateView
 from django.urls import reverse_lazy
-from django.http import HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect
 
-from .models import movieModel
+from .models import movieModel, Diretores
 from .forms import movieForm
 
 import requests
@@ -51,32 +52,10 @@ class movieDeleteView(DeleteView):
     template_name = 'omdb_api/delete.html'
     success_url = reverse_lazy('omdb_api:list')
     
-class movieUpdateView(UpdateView):
-    model = movieModel
-    fields = ['title']
-    template_name = 'omdb_api/update.html'
-    success_url = reverse_lazy('omdb_api:list')
-    failure_url = reverse_lazy('omdb_api:error')
-    def form_valid(self, form):
-        title = form.cleaned_data['title']
-        url = f'http://www.omdbapi.com/?t={title}&apikey=4a3b711b'
-        response = requests.get(url)
-        if response.status_code == 200:
-            movie = response.json()
-            if movie.get('Response') == 'True':
-                movieModel.objects.create(
-                    title=movie.get('Title', 'N/A'),
-                    year=movie.get('Year', 'N/A'),
-                    type=movie.get('Type', 'N/A'),
-                    genre=movie.get('Genre', 'N/A'),
-                    director=movie.get('Director', 'N/A'),
-                    writer=movie.get('Writer', 'N/A'),
-                    actors=movie.get('Actors', 'N/A'),
-                    awards=movie.get('Awards', 'N/A'),
-                    rating=movie['Ratings'][0]['Value'] if movie.get('Ratings') else 'N/A'
-                )
-                return super().form_valid(form)
-        return HttpResponseRedirect(self.failure_url)
-    
 def error(request):
     return render(request, 'omdb_api/error.html')
+
+class DiretoresListView(ListView):
+    model = Diretores
+    template_name = 'omdb_api/diretores.html'
+    context_object_name = 'diretores'

@@ -18,9 +18,8 @@
         <li>Awards: {{ movie.awards }}</li>
         <li>Rating: {{ movie.rating }}</li>
     </ul>
+    <button><a href="{% url 'omdb_api:list' %}"> < Back </a></button>
     <button><a href="{% url 'omdb_api:search' %}">Search more</a></button>
-    <button><a href="{% url 'omdb_api:list' %}">History</a></button>
-    <button><a href="{% url 'omdb_api:update' movie.pk %}">Update</a></button>
     <button><a href="{% url 'omdb_api:delete' movie.pk %}">Delete</a></button>
 </body>
 </html>

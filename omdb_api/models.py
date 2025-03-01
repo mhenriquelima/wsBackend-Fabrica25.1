@@ -13,3 +13,9 @@ class movieModel(models.Model):
     rating = models.CharField(max_length=100)
     def __str__(self):
         return self.title
+
+class userModel(models.Model):
+    username = models.CharField(max_length=20)
+    password = models.CharField(max_length=20)
+    def __str__(self):
+        return self.username    
