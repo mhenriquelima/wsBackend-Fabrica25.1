@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie History</title>
+</head>
+<body>
+    <h1>Movie History</h1>
+    <ul>
+        {% for movie in movies %}
+            <li><a href="{% url 'omdb_api:detail' movie.pk %}">{{ movie.title }}</a> ({{ movie.year }})</li>
+        {% endfor %}
+    </ul>
+    <button><a href="{% url 'omdb_api:search' %}">Search</a></button>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Details</title>
+</head>
+<body>
+    <h1>Movie Details</h1>
+    <ul>
+        <li>Title: {{ movie.title }}</li>
+        <li>Year: {{ movie.year }}</li>
+        <li>Type: {{ movie.type }}</li>
+        <li>Genre: {{ movie.genre }}</li>
+        <li>Director: {{ movie.director }}</li>
+        <li>Writer: {{ movie.writer }}</li>
+        <li>Actors: {{ movie.actors }}</li>
+        <li>Awards: {{ movie.awards }}</li>
+        <li>Rating: {{ movie.rating }}</li>
+    </ul>
+    <button><a href="{% url 'omdb_api:list' %}">History</a></button><button><a href="{% url 'omdb_api:search' %}">Search more</a></button>
+</body>
+</html>
